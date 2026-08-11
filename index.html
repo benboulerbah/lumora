@@ -165,8 +165,8 @@
                     </div>
                 </div>
 
-                <!-- تم ربط الاستمارة برابط Google Script الخاص بك -->
-                <form id="google-sheet-form" method="POST" action="https://script.google.com/macros/s/AKfycbyHNlcq8ZCuAcdZFMuM20doAoznXchtuV4JsjoBrlhX-rILyYmKI_VFz9jsFj3APBRhVw/exec" class="space-y-6">
+                <!-- تم ربط الاستمارة برابط Google Script الجديد -->
+                <form id="google-sheet-form" method="POST" action="https://script.google.com/macros/s/AKfycbxdIoQOGXYmKTFGbcLCOH9olAk8zPWoEATPVOlpmXO-atHbWYuWOhkNFycC6SaOeJ4h1A/exec" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-steel mb-2">الاسم الكامل</label>
@@ -284,8 +284,8 @@
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-50');
 
-            // تم إضافة mode: 'no-cors' لحل مشكلة الإرسال مع Google Sheets
-            fetch(url, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+            // التعديل هنا لضمان توافق البيانات مع جوجل شيت بدون مشاكل
+            fetch(url, { method: 'POST', body: new URLSearchParams(new FormData(form)) })
                 .then(response => {
                     successMsg.classList.remove('hidden');
                     form.reset();
