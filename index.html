@@ -284,7 +284,8 @@
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-50');
 
-            fetch(url, { method: 'POST', body: new FormData(form) })
+            // تم إضافة mode: 'no-cors' لحل مشكلة الإرسال مع Google Sheets
+            fetch(url, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
                 .then(response => {
                     successMsg.classList.remove('hidden');
                     form.reset();
