@@ -36,19 +36,18 @@
         .swiper-button-next, .swiper-button-prev { color: #B8FF3B !important; }
         .swiper-pagination-bullet { background-color: #787C85 !important; opacity: 1; }
         .swiper-pagination-bullet-active { background-color: #B8FF3B !important; box-shadow: 0 0 10px #B8FF3B; }
-        .btn-glow:hover { box-shadow: 0 0 20px rgba(184, 255, 59, 0.4); }
+        .btn-glow.active:hover { box-shadow: 0 0 20px rgba(184, 255, 59, 0.4); }
         
         input[type="number"]::-webkit-inner-spin-button, 
         input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 
-        /* إعدادات الشريط المتحرك (من اليسار إلى اليمين) */
         .marquee-container {
             width: 100%;
             overflow: hidden;
             background-color: #B8FF3B;
             padding: 8px 0;
             white-space: nowrap;
-            direction: ltr; /* لضمان حركة صحيحة للمؤثر */
+            direction: ltr;
         }
         .marquee-text {
             display: inline-block;
@@ -65,7 +64,7 @@
 </head>
 <body class="bg-graphite text-offwhite antialiased overflow-x-hidden">
 
-    <!-- الشريط العلوي المتحرك -->
+    <!-- الشريط العلوي -->
     <div class="marquee-container">
         <div class="marquee-text" dir="rtl">
             ضمان شهر كامل وتوصيل متوفر لكل الولايات
@@ -80,36 +79,18 @@
         </div>
     </header>
 
-    <!-- قسم الهيرو والسلايدر -->
+    <!-- الهيرو والسلايدر -->
     <section class="container mx-auto px-4 py-12 md:py-20 flex flex-col lg:flex-row items-center gap-12">
         <div class="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-2xl border border-steel/20">
             <div class="absolute inset-0 bg-lime opacity-10 blur-3xl rounded-full"></div>
             <div class="swiper mySwiper w-full h-[500px] md:h-[650px] relative z-10 bg-black">
                 <div class="swiper-wrapper">
-                    <!-- السلايد 1 -->
-                    <div class="swiper-slide flex justify-center items-center">
-                        <img src="https://i.ibb.co/bM5dGHQZ/tinywow-Chat-GPT-Image-Aug-6-2026-08-41-17-PM-91254591.webp" class="w-full h-full object-contain">
-                    </div>
-                    <!-- السلايد 2 -->
-                    <div class="swiper-slide flex justify-center items-center">
-                        <img src="https://i.ibb.co/RkcrLmNP/tinywow-Chat-GPT-Image-Aug-6-2026-08-38-30-PM-91254626.webp" class="w-full h-full object-contain">
-                    </div>
-                    <!-- السلايد 3 -->
-                    <div class="swiper-slide flex justify-center items-center">
-                        <img src="https://i.ibb.co/Q37MtgVZ/tinywow-Chat-GPT-Image-Aug-6-2026-08-45-08-PM-91254669.webp" class="w-full h-full object-contain">
-                    </div>
-                    <!-- السلايد 4 -->
-                    <div class="swiper-slide flex justify-center items-center">
-                        <img src="https://i.ibb.co/cc4KkmKT/Chat-GPT-Image-Aug-11-2026-11-59-24-AM.webp" class="w-full h-full object-contain">
-                    </div>
-                    <!-- السلايد 5 -->
-                    <div class="swiper-slide flex justify-center items-center">
-                        <img src="https://i.ibb.co/nqx1C4Z5/Chat-GPT-Image-Aug-11-2026-12-06-46-PM.webp" class="w-full h-full object-contain">
-                    </div>
-                    <!-- السلايد 6 -->
-                    <div class="swiper-slide flex justify-center items-center">
-                        <img src="https://i.ibb.co/Pf8cLV5/Chat-GPT-Image-Aug-11-2026-12-09-22-PM.webp" class="w-full h-full object-contain">
-                    </div>
+                    <div class="swiper-slide flex justify-center items-center"><img src="https://i.ibb.co/bM5dGHQZ/tinywow-Chat-GPT-Image-Aug-6-2026-08-41-17-PM-91254591.webp" class="w-full h-full object-contain"></div>
+                    <div class="swiper-slide flex justify-center items-center"><img src="https://i.ibb.co/RkcrLmNP/tinywow-Chat-GPT-Image-Aug-6-2026-08-38-30-PM-91254626.webp" class="w-full h-full object-contain"></div>
+                    <div class="swiper-slide flex justify-center items-center"><img src="https://i.ibb.co/Q37MtgVZ/tinywow-Chat-GPT-Image-Aug-6-2026-08-45-08-PM-91254669.webp" class="w-full h-full object-contain"></div>
+                    <div class="swiper-slide flex justify-center items-center"><img src="https://i.ibb.co/cc4KkmKT/Chat-GPT-Image-Aug-11-2026-11-59-24-AM.webp" class="w-full h-full object-contain"></div>
+                    <div class="swiper-slide flex justify-center items-center"><img src="https://i.ibb.co/nqx1C4Z5/Chat-GPT-Image-Aug-11-2026-12-06-46-PM.webp" class="w-full h-full object-contain"></div>
+                    <div class="swiper-slide flex justify-center items-center"><img src="https://i.ibb.co/Pf8cLV5/Chat-GPT-Image-Aug-11-2026-12-09-22-PM.webp" class="w-full h-full object-contain"></div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -126,14 +107,14 @@
                 إضاءة تصوير مغناطيسية احترافية بحجم الجيب. ترتكز بقوة عبر MagSafe وتمنحك تحكماً دقيقاً بفضل بكرات التعديل.
             </p>
             <div class="mt-8">
-                <a href="#order-form" class="inline-block text-center bg-lime text-graphite font-bold text-lg py-4 px-10 rounded-full hover:bg-white transition-all duration-300 btn-glow w-full md:w-auto shadow-lg shadow-lime/20">
+                <a href="#order-form" class="inline-block text-center bg-lime text-graphite font-bold text-lg py-4 px-10 rounded-full hover:bg-white transition-all duration-300 btn-glow active w-full md:w-auto shadow-lg shadow-lime/20">
                     أطلب الآن واستفد من العرض
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- قسم استمارة الطلب والعداد التنازلي -->
+    <!-- الاستمارة -->
     <section id="order-form" class="py-16 bg-graphiteLight/50">
         <div class="container mx-auto px-4 max-w-4xl">
             <div class="bg-graphite rounded-3xl p-8 md:p-12 shadow-2xl border border-steel/20 relative overflow-hidden">
@@ -165,8 +146,7 @@
                     </div>
                 </div>
 
-                <!-- تم ربط الاستمارة برابط Google Script الجديد -->
-                <form id="google-sheet-form" method="POST" action="https://script.google.com/macros/s/AKfycbxdIoQOGXYmKTFGbcLCOH9olAk8zPWoEATPVOlpmXO-atHbWYuWOhkNFycC6SaOeJ4h1A/exec" class="space-y-6">
+                <form id="google-sheet-form" method="POST" action="https://script.google.com/macros/s/AKfycbxRgYxNT2CdNSYTAGQhdm4B4UycvAxUneQWk6VmUl8DWU929YMwxqq2oBhSwmoViTEGNg/exec" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-steel mb-2">الاسم الكامل</label>
@@ -204,8 +184,9 @@
                     </div>
 
                     <div class="pt-4 text-center">
-                        <button type="submit" id="submitBtn" class="w-full bg-lime text-graphite font-bold text-xl py-4 rounded-xl hover:bg-white transition-all duration-300 btn-glow">
-                            تأكيد الطلب
+                        <!-- تم تعطيل الزر افتراضياً وجعله باهت اللون -->
+                        <button type="submit" id="submitBtn" disabled class="w-full bg-lime text-graphite font-bold text-xl py-4 rounded-xl transition-all duration-300 btn-glow opacity-50 cursor-not-allowed">
+                            أكمل المعلومات لتأكيد الطلب
                         </button>
                         <p class="text-xs text-steel mt-4 flex items-center justify-center gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -220,7 +201,7 @@
         </div>
     </section>
 
-    <!-- قسم الوصف التفصيلي -->
+    <!-- الوصف التفصيلي -->
     <section class="py-16 container mx-auto px-4 max-w-5xl text-right">
         <h2 class="text-3xl font-bold mb-10 text-center border-b border-steel/20 pb-6">المواصفات التقنية والتفاصيل</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -245,14 +226,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        // تفعيل السلايدر
         var swiper = new Swiper(".mySwiper", {
             loop: true, effect: "fade", autoplay: { delay: 3500, disableOnInteraction: false },
             pagination: { el: ".swiper-pagination", clickable: true },
             navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
         });
 
-        // العداد التنازلي
         function startCountdown() {
             let hours = 23, minutes = 59, seconds = 59;
             const hoursEl = document.getElementById('hours');
@@ -264,7 +243,6 @@
                 if (seconds < 0) { seconds = 59; minutes--; }
                 if (minutes < 0) { minutes = 59; hours--; }
                 if (hours < 0) { hours = 23; }
-
                 hoursEl.innerText = hours < 10 ? "0" + hours : hours;
                 minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
                 secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
@@ -272,32 +250,47 @@
         }
         startCountdown();
 
-        // إرسال البيانات
         const form = document.getElementById('google-sheet-form');
         const submitBtn = document.getElementById('submitBtn');
         const successMsg = document.getElementById('successMsg');
+
+        // سكربت فحص الخانات وتفعيل الزر
+        form.addEventListener('input', () => {
+            if (form.checkValidity()) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                submitBtn.classList.add('hover:bg-white', 'active');
+                submitBtn.innerText = 'تأكيد الطلب';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                submitBtn.classList.remove('hover:bg-white', 'active');
+                submitBtn.innerText = 'أكمل المعلومات لتأكيد الطلب';
+            }
+        });
 
         form.addEventListener('submit', e => {
             e.preventDefault();
             const url = form.action;
             submitBtn.innerText = 'جاري الإرسال...';
             submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-50');
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            // التعديل هنا لضمان توافق البيانات مع جوجل شيت بدون مشاكل
-            fetch(url, { method: 'POST', body: new URLSearchParams(new FormData(form)) })
-                .then(response => {
+            // إرسال البيانات (مع وضع no-cors لتجاوز القيود الأمنية بشكل سليم)
+            fetch(url, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form)) })
+                .then(() => {
                     successMsg.classList.remove('hidden');
                     form.reset();
-                    submitBtn.innerText = 'تأكيد الطلب';
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-50');
+                    submitBtn.innerText = 'أكمل المعلومات لتأكيد الطلب';
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    submitBtn.classList.remove('hover:bg-white', 'active');
                 })
                 .catch(error => {
                     alert('حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.');
                     submitBtn.innerText = 'تأكيد الطلب';
                     submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-50');
+                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 });
         });
     </script>
