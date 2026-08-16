@@ -203,7 +203,6 @@
                     </div>
 
                     <div class="pt-4 text-center">
-                        <!-- تم تعطيل الزر افتراضياً وجعله باهت اللون -->
                         <button type="submit" id="submitBtn" disabled class="w-full bg-lime text-graphite font-bold text-xl py-4 rounded-xl transition-all duration-300 btn-glow opacity-50 cursor-not-allowed">
                             أكمل المعلومات لتأكيد الطلب
                         </button>
@@ -272,8 +271,11 @@
         const form = document.getElementById('google-sheet-form');
         const submitBtn = document.getElementById('submitBtn');
         const successMsg = document.getElementById('successMsg');
+        
+        let isFormSubmitted = false;
+        let abandonedSent = false;
 
-        // سكربت فحص الخانات وتفعيل الزر
+        // تفعيل زر الشراء عند اكتمال الحقول
         form.addEventListener('input', () => {
             if (form.checkValidity()) {
                 submitBtn.disabled = false;
@@ -288,23 +290,56 @@
             }
         });
 
+        // التعامل مع الطلبيات المنسية (Abandoned Carts)
+        function sendAbandonedData() {
+            const nameInput = document.querySelector('input[name="name"]').value.trim();
+            const phoneInput = document.querySelector('input[name="phone"]').value.trim();
+            
+            // نرسل الطلبية المنسية فقط إذا كتب على الأقل اسمه أو رقم هاتفه
+            if ((nameInput || phoneInput) && !isFormSubmitted && !abandonedSent) {
+                abandonedSent = true; 
+                const abandonedData = new FormData(form);
+                
+                // تعديل الاسم ليظهر بجانبه تنويه في جوجل شيت
+                const originalName = nameInput || "لم يكتب الاسم";
+                abandonedData.set('name', originalName + ' ⚠️ (منسية - لم يضغط تأكيد)');
+                if (!phoneInput) abandonedData.set('phone', 'بدون رقم');
+
+                fetch(form.action, { 
+                    method: 'POST', 
+                    mode: 'no-cors', 
+                    keepalive: true, // يضمن الإرسال حتى لو أغلقت الصفحة
+                    body: new URLSearchParams(abandonedData) 
+                }).catch(() => {});
+            }
+        }
+
+        // رصد محاولة إغلاق الصفحة أو تبديل التبويبات
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'hidden') {
+                sendAbandonedData();
+            }
+        });
+        window.addEventListener('beforeunload', function() {
+            sendAbandonedData();
+        });
+
+        // التعامل مع الطلبية الحقيقية (عند الضغط على تأكيد)
         form.addEventListener('submit', e => {
             e.preventDefault();
+            isFormSubmitted = true; // نوقف عمل الطلبيات المنسية
             const url = form.action;
+            
             submitBtn.innerText = 'جاري الإرسال...';
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            // إرسال البيانات
             fetch(url, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form)) })
                 .then(() => {
                     successMsg.classList.remove('hidden');
-                    
-                    // إطلاق حدث الشراء (Purchase) في Meta Pixel عند نجاح الطلب
                     if (typeof fbq === 'function') {
                         fbq('track', 'Purchase', {currency: 'DZD', value: 2450.00});
                     }
-
                     form.reset();
                     submitBtn.innerText = 'أكمل المعلومات لتأكيد الطلب';
                     submitBtn.disabled = true;
@@ -313,6 +348,7 @@
                 })
                 .catch(error => {
                     alert('حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.');
+                    isFormSubmitted = false;
                     submitBtn.innerText = 'تأكيد الطلب';
                     submitBtn.disabled = false;
                     submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
